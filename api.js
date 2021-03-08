@@ -61,6 +61,9 @@ app.get('/mobiles',(req,res)=>{
      else if(req.query.Brand){
          condition={Brand:req.query.Brand}
      }
+     else if(req.query.Nme){
+         condition={Name:req.query.Name}
+     }
     db.collection('mobiles').find(condition).sort(sort).toArray((err,result)=>{
          if(err) throw err;
          res.send(result)
