@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 const port=process.env.PORT||4002;
 const mongo=require('mongodb');
-const Cart=require('./UseSchema')
+
 const mongourl='mongodb+srv://mistore:mistore4002@cluster0.2bfat.mongodb.net/mistore?retryWrites=true&w=majority';
 let db;
 const MongoClient=mongo.MongoClient;
