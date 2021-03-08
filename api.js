@@ -44,26 +44,21 @@ app.get('/images',(req,res)=>{
         res.send(result)
     })
 })
-//getting data for carousel
-app.get('/Carousel',(req,res)=>{
-    
-    db.collection('Carousel').find().toArray((err,result)=>{
-        if(err) throw err;
-        res.send(result)
-    })
-})
-
 
 
 //mobilels main page route
 app.get('/mobiles',(req,res)=>{
     var condition={}
-    var sort={Id:-1}
-     if(req.query.Brand&&req.query.sort){
-         condition={Brand:req.query.Brand}
-         sort={Id:Number(req.query.sort)}
-     }
-    db.collection('mobiles').find(condition).sort(sort).toArray((err,result)=>{
+    var condition1={}
+    
+    if(req.query.name&&req.query.Images){
+        condition1={Images:Boolean(req.query.Images)}
+        condition={Name:req.query.Images}
+    }
+    else if(req.query.name){
+        condition={Name:req.query.name}
+    }
+    db.collection('mistore').find(condition).project(condition1).toArray((err,result)=>{
          if(err) throw err;
          res.send(result)
     })
