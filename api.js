@@ -55,14 +55,14 @@ app.get('/mobiles',(req,res)=>{
          condition={Brand:req.query.Brand}
          sort={Id:Number(req.query.sort)}
      }
-     else if(req.query.Brand&&req.query.Name){
-        condition={$and:[{Brand:req.query.Brand},{Name:req.query.Name}]}
+     else if(req.query.Brand&&req.query.name){
+        condition={$and:[{Brand:req.query.Brand},{Name:req.query.name}]}
      }
      else if(req.query.Brand){
          condition={Brand:req.query.Brand}
      }
-     else if(req.query.Nme){
-         condition={Name:req.query.Name}
+     else if(req.query.name){
+         condition={Name:req.query.name}
      }
     db.collection('mobiles').find(condition).sort(sort).toArray((err,result)=>{
          if(err) throw err;
