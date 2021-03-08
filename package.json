@@ -1,0 +1,23 @@
+{
+  "name": "keerthi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node api.js",
+    "dev": "nodemo api.js"
+  },
+  "keywords": [
+    "miapi"
+  ],
+  "author": "praveen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.6.4"
+  }
+}
