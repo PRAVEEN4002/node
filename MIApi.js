@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 const port=process.env.PORT||4002;
 const mongo=require('mongodb');
-
+const Cart=require('./UseSchema')
 const mongourl='mongodb+srv://mistore:mistore4002@cluster0.2bfat.mongodb.net/mistore?retryWrites=true&w=majority';
 let db;
 const MongoClient=mongo.MongoClient;
@@ -44,21 +44,26 @@ app.get('/images',(req,res)=>{
         res.send(result)
     })
 })
+//getting data for carousel
+app.get('/Carousel',(req,res)=>{
+    
+    db.collection('Carousel').find().toArray((err,result)=>{
+        if(err) throw err;
+        res.send(result)
+    })
+})
+
 
 
 //mobilels main page route
 app.get('/mobiles',(req,res)=>{
     var condition={}
-    var condition1={}
-    
-    if(req.query.name&&req.query.Images){
-        condition1={Images:Boolean(req.query.Images)}
-        condition={Name:req.query.Images}
-    }
-    else if(req.query.name){
-        condition={Name:req.query.name}
-    }
-    db.collection('mistore').find(condition).project(condition1).toArray((err,result)=>{
+    var sort={Id:-1}
+     if(req.query.Brand&&req.query.sort){
+         condition={Brand:req.query.Brand}
+         sort={Id:Number(req.query.sort)}
+     }
+    db.collection('mobiles').find(condition).sort(sort).toArray((err,result)=>{
          if(err) throw err;
          res.send(result)
     })
