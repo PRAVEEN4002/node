@@ -55,6 +55,9 @@ app.get('/mobiles',(req,res)=>{
          condition={Brand:req.query.Brand}
          sort={Id:Number(req.query.sort)}
      }
+     else if(req.query.Brand && req.query.Display){
+        condition={$and:[{Brand:req.query.Brand},{Display:(req.query.Display)}]}
+    }
      else if(req.query.Brand&&req.query.name){
         condition={$and:[{Brand:req.query.Brand},{Name:req.query.name}]}
      }
