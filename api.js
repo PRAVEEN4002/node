@@ -67,6 +67,9 @@ app.get('/mobiles',(req,res)=>{
      else if(req.query.name){
          condition={Name:req.query.name}
      }
+     else if(req.query.popular){
+         condition={Popular:req.query.popular}
+     }
     db.collection('mobiles').find(condition).sort(sort).toArray((err,result)=>{
          if(err) throw err;
          res.send(result)
